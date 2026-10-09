@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Arisia Roca — Photographer</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #f2eee8;
+			--muted: #a8a19a;
+			--line: rgba(242, 238, 232, .22);
+			--paper: #0e0e11;
+			--rust: #315b8f;
+			--peach: #82bfff;
+			--mono: "DM Mono", monospace;
+			--sans: "Manrope", sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: radial-gradient(circle at 8% 14%, rgba(51, 112, 190, .18), transparent 22%), radial-gradient(circle at 92% 42%, rgba(34, 79, 142, .13), transparent 25%), radial-gradient(circle at 20% 88%, rgba(55, 113, 184, .1), transparent 24%), var(--paper); background-attachment: fixed; color: var(--ink); font-family: var(--sans); }
+		a { color: inherit; text-decoration: none; }
+		img { display: block; width: 100%; height: 100%; object-fit: cover; }
+		.shell { overflow: hidden; }
+		.eyebrow, .nav, .small-copy, .project-meta, .quote-label { font: 500 10px/1.25 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+		.nav { align-items: center; display: flex; justify-content: space-between; left: 0; padding: 24px 4vw; position: absolute; right: 0; top: 0; z-index: 5; }
+		.nav-links { display: flex; gap: 28px; }
+		.nav a { transition: color .2s ease; }
+		.nav a:hover { color: var(--peach); }
+		.menu { display: none; }
+
+		.hero { min-height: 100vh; padding: 12vh 4vw 7vh; position: relative; display: grid; place-items: center; }
+		.hero::before { background: radial-gradient(circle, rgba(51, 112, 190, .38), transparent 62%); content: ""; height: 80vw; left: -23vw; max-height: 900px; max-width: 900px; position: absolute; top: 6vh; width: 80vw; }
+		.hero-grid { align-items: center; display: grid; gap: 5vw; grid-template-columns: .82fr 1.18fr; max-width: 1320px; position: relative; width: 100%; }
+		.hero-copy { padding-left: 5vw; position: relative; z-index: 1; }
+		h1, h2, h3, p { margin: 0; }
+		h1 { font-size: clamp(3.2rem, 7vw, 7.2rem); font-weight: 500; letter-spacing: -.08em; line-height: .86; max-width: 700px; }
+		h1 span { color: var(--peach); display: block; }
+		.hero-intro { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 38px; max-width: 270px; }
+		.scroll-mark { align-items: center; display: flex; gap: 14px; margin-top: 55px; }
+		.scroll-mark::before { background: var(--peach); content: ""; height: 1px; width: 36px; }
+		.hero-image { aspect-ratio: .83; max-height: 690px; overflow: hidden; position: relative; transform: rotate(2deg); }
+		.hero-image::after { border: 1px solid rgba(255,255,255,.55); content: ""; inset: 13px; position: absolute; }
+		.hero-image img { filter: saturate(.75); }
+		.hero-image-label { bottom: 25px; left: 28px; position: absolute; z-index: 1; }
+
+		.section { margin: 0 auto; max-width: 1320px; padding: 150px 4vw; }
+		.section-head { align-items: end; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; margin-bottom: 58px; padding-bottom: 18px; }
+		h2 { font-size: clamp(2.3rem, 4.8vw, 5.2rem); font-weight: 500; letter-spacing: -.08em; line-height: .9; }
+		h2 em { color: var(--peach); font-style: normal; }
+		.section-note { color: var(--muted); max-width: 245px; line-height: 1.5; }
+		.about-layout { display: grid; gap: 11vw; grid-template-columns: .8fr 1.2fr; }
+		.about-image { aspect-ratio: 1.18; overflow: hidden; }
+		.about-image img { filter: saturate(.7); }
+		.about-text { align-self: center; font-size: clamp(1.1rem, 2vw, 2rem); letter-spacing: -.04em; line-height: 1.18; max-width: 650px; }
+		.about-text strong { color: var(--peach); font-weight: 500; }
+		.about-text small { color: var(--muted); display: block; font: 11px/1.6 var(--mono); letter-spacing: 0; margin-top: 38px; max-width: 310px; }
+
+		.work { padding-top: 40px; }
+		.work-grid { display: grid; gap: 30px 20px; grid-template-columns: repeat(12, 1fr); }
+		.project { position: relative; transform: rotate(-1.4deg); transform-origin: center; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+		.project:nth-child(1) { grid-column: span 7; }
+		.project:nth-child(2) { grid-column: 9 / span 4; margin-top: 140px; transform: rotate(1.2deg); }
+		.project:nth-child(3) { grid-column: 2 / span 5; margin-top: 20px; transform: rotate(-2deg); }
+		.project:nth-child(4) { grid-column: 8 / span 5; margin-top: 140px; transform: rotate(1.6deg); }
+		.project:hover { transform: rotate(0deg) translateY(-8px); }
+		.project-image { aspect-ratio: 1.22; overflow: hidden; position: relative; }
+		.project-image::after { border: 1px solid rgba(255,255,255,.55); content: ""; inset: 13px; pointer-events: none; position: absolute; }
+		.project:nth-child(2) .project-image, .project:nth-child(4) .project-image { aspect-ratio: .8; }
+		.project img { filter: saturate(.78); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+		.project:hover img { filter: saturate(1); transform: scale(1.05); }
+		.project-meta { align-items: center; color: var(--muted); display: flex; justify-content: space-between; padding-top: 12px; }
+		.project-meta span:last-child { color: var(--peach); }
+
+		.services { max-width: none; padding-left: max(4vw, calc((100vw - 1240px) / 2)); padding-right: max(4vw, calc((100vw - 1240px) / 2)); position: relative; }
+		.service-list { position: relative; z-index: 1; }
+		.service-row { align-items: center; border-bottom: 1px solid var(--line); display: grid; gap: 25px; grid-template-columns: 60px 92px 1fr auto; padding: 25px 0; }
+		.service-row:first-child { border-top: 1px solid var(--line); }
+		.service-number { color: var(--peach); font: 11px var(--mono); }
+		.service-image { aspect-ratio: 1.25; background: transparent; border: 0; cursor: pointer; display: block; overflow: hidden; padding: 0; position: relative; width: 100%; }
+		.service-image img { filter: saturate(.7); transition: filter .3s ease, transform .5s ease; }
+		.service-row:hover .service-image img { filter: saturate(1); transform: scale(1.06); }
+		.service-image::after { border: 1px solid rgba(255,255,255,.65); content: ""; inset: 7px; opacity: 0; pointer-events: none; position: absolute; transition: opacity .25s ease; }
+		.service-image:hover::after, .service-image:focus-visible::after { opacity: 1; }
+		.service-more { display: grid; gap: 12px; grid-column: 2 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); max-height: 0; opacity: 0; overflow: hidden; padding-top: 0; transition: max-height .45s ease, opacity .3s ease, padding-top .45s ease; }
+		.service-row.is-open .service-more { max-height: 470px; opacity: 1; padding-top: 4px; }
+		.service-more-image { aspect-ratio: 3 / 4; overflow: hidden; }
+		.service-more-image img { cursor: zoom-in; filter: saturate(.7); transition: filter .3s ease, transform .5s ease; }
+		.service-more-image:hover img { filter: saturate(1); transform: scale(1.05); }
+		.lightbox { align-items: center; background: rgba(5, 7, 12, .9); display: flex; inset: 0; justify-content: center; opacity: 0; padding: 7vw; pointer-events: none; position: fixed; transition: opacity .3s ease; visibility: hidden; z-index: 20; }
+		.lightbox.is-open { opacity: 1; pointer-events: auto; visibility: visible; }
+		.lightbox-image { max-height: 86vh; max-width: min(80vw, 620px); object-fit: contain; width: auto; }
+		.lightbox-close { background: transparent; border: 1px solid var(--line); color: var(--ink); cursor: pointer; font: 11px var(--mono); padding: 10px 14px; position: absolute; right: 28px; top: 28px; }
+		.service-name { font-size: clamp(1.2rem, 2.2vw, 2.6rem); letter-spacing: -.05em; }
+		.service-detail { color: var(--muted); font-size: 11px; }
+
+		.gallery { padding-bottom: 170px; }
+		.gallery-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		.gallery-item { aspect-ratio: 1 / 1.08; overflow: hidden; }
+		.gallery-item img { cursor: zoom-in; filter: saturate(.78); transition: filter .4s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+		.gallery-item:hover img { filter: saturate(1); transform: scale(1.05); }
+		.contact { align-items: end; border-top: 1px solid var(--line); display: flex; justify-content: space-between; padding-bottom: 46px; padding-top: 34px; }
+		.contact h2 { font-size: clamp(2.8rem, 7vw, 7.5rem); }
+		.contact h2 span { color: var(--peach); display: block; }
+		.email { border-bottom: 1px solid var(--peach); color: var(--peach); font: 12px var(--mono); padding-bottom: 8px; }
+		footer { color: var(--muted); display: flex; font: 10px var(--mono); justify-content: space-between; padding: 20px 4vw; }
+		.footer-credit { align-items: center; display: flex; gap: 12px; }
+		.footer-credit::before { background: var(--peach); content: ""; height: 1px; width: 28px; }
+		.footer-credit strong { color: var(--ink); font-weight: 500; }
+
+		@media (max-width: 720px) {
+			.nav { padding: 20px 6vw; } .nav-links { display: none; } .menu { display: block; }
+			.hero { min-height: auto; padding: 130px 6vw 80px; } .hero-grid, .about-layout { grid-template-columns: 1fr; }
+			.hero-copy { padding: 0; } h1 { font-size: clamp(3.2rem, 15vw, 5.4rem); } .hero-intro { margin-top: 28px; } .hero-image { margin: 50px 8vw 0; max-height: none; }
+			.section { padding: 90px 6vw; } .section-head { align-items: start; flex-direction: column; gap: 24px; margin-bottom: 38px; } .section-note { max-width: 290px; }
+			.about-image { margin: 0 13vw 0 0; } .about-text { margin-top: 22px; }
+			.work { padding-top: 10px; } .work-grid { display: block; } .project, .project:nth-child(n) { margin: 0 0 48px; } .project:nth-child(even) { margin-left: 15vw; }
+			.services { padding-left: 6vw; padding-right: 6vw; } .service-row { gap: 14px; grid-template-columns: 32px 76px 1fr; } .service-image { grid-row: span 2; } .service-detail { grid-column: 3; margin-top: -15px; } .service-more { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); } .service-name { font-size: 1.65rem; }
+			.gallery { padding-bottom: 100px; } .gallery-grid { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); } .gallery-item { aspect-ratio: 1 / 1.12; } .contact { align-items: start; flex-direction: column; gap: 40px; } .contact h2 { font-size: 15vw; }
+			footer { align-items: flex-start; flex-direction: column; gap: 12px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="shell">
+		<nav class="nav"><a href="#top">RIRI<span style="color:var(--peach)">.</span></a><div class="nav-links"><a href="#about">About</a><a href="#work">Selected work</a><a href="#contact">Contact</a></div><span class="menu">Menu</span></nav>
+		<main id="top">
+			<section class="hero">
+				<div class="hero-grid">
+					<div class="hero-copy"><p class="eyebrow">Portrait / Product / Places</p><h1>Arisia<span>Roca</span></h1><p class="hero-intro">Photographer and visual storyteller making warm, considered images for people, places and products with something to say.</p><a class="scroll-mark small-copy" href="#about">Scroll to explore</a></div>
+					<div class="hero-image"><img src="images/cover.jpg" alt="image"><span class="hero-image-label eyebrow">Selected portrait / 01</span></div>
+				</div>
+			</section>
+
+			<section class="section" id="about"><div class="section-head"><h2>A little<br><em>about me</em></h2><p class="section-note small-copy">The girl behind the lens</p></div><div class="about-layout"><div class="about-image"><img src="images/profile.png" alt="image"></div><p class="about-text">I make photographs that feel <strong>lived in</strong>. Honest gestures, quiet details, a flash of colour. My work sits somewhere between instinct and intention.<small>Based in General Santos City, Philippines. I am available for editorial, commercial and commissioned work.</small></p></div></section>
+
+			<section class="section work" id="work"><div class="section-head"><h2>Personal <em>Favorites</em></h2><p class="section-note small-copy">A few recent stories</p></div><div class="work-grid">
+				<div class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85" alt="image"></div><div class="project-meta"><span>Editorial / 2024</span></div></div>
+				<div class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85" alt="image"></div><div class="project-meta"><span>Still life / 2024</span></div></div>
+				<div class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85" alt="image"></div><div class="project-meta"><span>Campaign / 2023</span></div></div>
+				<div class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=85" alt="image"></div><div class="project-meta"><span>Portrait / 2023</span></div></div>
+			</div></section>
+
+			<section class="section services"><div class="section-head"><h2>What I <em>do</em></h2><p class="section-note small-copy">Ways we can work together</p></div><div class="service-list">
+				<div class="service-row"><span class="service-number">01</span><button class="service-image" type="button" aria-expanded="false" aria-label="Show more portrait photography"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=320&q=80" alt="image"></button><span class="service-name">Portraits &amp; People</span><span class="service-detail">Editorial / Personal</span><div class="service-more"><div class="service-more-image"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80" alt="image"></div><div class="service-more-image"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="image"></div><div class="service-more-image"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" alt="image"></div></div></div>
+				<div class="service-row"><span class="service-number">02</span><button class="service-image" type="button" aria-expanded="false" aria-label="Show more product photography"><img src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=320&q=80" alt="image"></button><span class="service-name">Brands &amp; Product</span><span class="service-detail">Campaigns / Content</span><div class="service-more"><div class="service-more-image"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=500&q=80" alt="image"></div><div class="service-more-image"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="image"></div><div class="service-more-image"><img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=80" alt="image"></div></div></div>
+				<div class="service-row"><span class="service-number">03</span><button class="service-image" type="button" aria-expanded="false" aria-label="Show more places and events photography"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=320&q=80" alt="image"></button><span class="service-name">Places &amp; Events</span><span class="service-detail">Travel / Documentary</span><div class="service-more"><div class="service-more-image"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=500&q=80" alt="image"></div><div class="service-more-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="image"></div><div class="service-more-image"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80" alt="image"></div></div></div>
+			</div></section>
+
+			<section class="section gallery" id="gallery"><div class="section-head"><h2>A closer <em>look</em></h2><p class="section-note small-copy">Selected frames</p></div><div class="gallery-grid">
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1506152985053-2d7c86a4cf6b?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+				<div class="gallery-item"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85" alt="image"></div>
+			</div></section>
+			<section class="section contact" id="contact"><div><p class="eyebrow">Have a project in mind?</p><h2>Let's<br><span>Connect</span></h2></div><a class="email" href="mailto:hello@annakatrina.co">email@gmail.com</a></section>
+		</main>
+		<footer><span>© 2026 Riri</span><span class="footer-credit">Designed &amp; built by <strong>XRLSNDR</strong></span><span>IG: @xrlsndr</span></footer>
+	</div>
+	<div class="lightbox" aria-hidden="true"><button class="lightbox-close" type="button" aria-label="Close enlarged image">Close</button><img class="lightbox-image" src="" alt="image"></div>
+	<script>
+		const workSection = document.querySelector('#work');
+		const servicesSection = document.querySelector('.services');
+		servicesSection.parentNode.insertBefore(servicesSection, workSection);
+
+		document.querySelectorAll('.service-image').forEach((button) => {
+			button.addEventListener('click', () => {
+				const row = button.closest('.service-row');
+				const isOpen = row.classList.contains('is-open');
+				document.querySelectorAll('.service-row.is-open').forEach((openRow) => {
+					openRow.classList.remove('is-open');
+					openRow.querySelector('.service-image').setAttribute('aria-expanded', 'false');
+				});
+				if (!isOpen) {
+					row.classList.add('is-open');
+					button.setAttribute('aria-expanded', 'true');
+				}
+			});
+		});
+
+		const lightbox = document.querySelector('.lightbox');
+		const lightboxImage = document.querySelector('.lightbox-image');
+		const closeLightbox = () => {
+			lightbox.classList.remove('is-open');
+			lightbox.setAttribute('aria-hidden', 'true');
+			lightboxImage.src = '';
+		};
+		document.querySelectorAll('.service-more-image img, .gallery-item img').forEach((image) => {
+			image.addEventListener('click', () => {
+				lightboxImage.src = image.src;
+				lightboxImage.alt = image.alt;
+				lightbox.classList.add('is-open');
+				lightbox.setAttribute('aria-hidden', 'false');
+			});
+		});
+		document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+		lightbox.addEventListener('click', (event) => {
+			if (event.target === lightbox) closeLightbox();
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') closeLightbox();
+		});
+	</script>
+	</body>
+</html>
